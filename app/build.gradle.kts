@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services") // THIS IS THE GOOGLE SERVICES PLUGIN
 }
 
 android {
@@ -36,6 +37,14 @@ android {
 }
 
 dependencies {
+    // FIREBASE DEPENDENCIES
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+    implementation("com.google.firebase:firebase-storage")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
