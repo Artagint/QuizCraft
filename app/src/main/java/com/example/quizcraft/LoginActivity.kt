@@ -14,14 +14,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // grab your views
+        // grab text fields
         val emailInput     = findViewById<EditText>(R.id.emailInput)
         val passwordInput  = findViewById<EditText>(R.id.passwordInput)
         val gotoQuizButton = findViewById<Button>(R.id.gotoQuizButton)
         val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         val signUpButton   = findViewById<TextView>(R.id.signOut)
 
-        // one‑off getInstance
+        // getInstance
         val auth = FirebaseAuth.getInstance()
 
         // SIGN UP
@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-        // LOGIN
+        // login
         gotoQuizButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
             val pass  = passwordInput.text.toString()
@@ -46,11 +46,10 @@ class LoginActivity : AppCompatActivity() {
             }
             if (!ok) return@setOnClickListener
 
-            // Firebase sign‑in
+            // Firebase sign in
             auth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // ← here’s the only change:
                         startActivity(Intent(this, MenuActivity::class.java))
                         finish()
                     } else {
