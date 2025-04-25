@@ -28,39 +28,6 @@ class SignUpActivity : AppCompatActivity() {
         val confirmPasswordInput = findViewById<EditText>(R.id.confirmPasswordInput)
         val signupButton = findViewById<Button>(R.id.signupButton)
 
-        // This is where the user can toggle between viewing or not viewing the password field chars
-        val passwordToggle = findViewById<ImageView>(R.id.passwordToggle)
-        val confirmPasswordToggle = findViewById<ImageView>(R.id.confirmPasswordToggle)
-
-        var isPasswordVisible = false
-        var isConfirmPasswordVisible = false
-
-        passwordToggle.setOnClickListener{
-            isPasswordVisible = !isPasswordVisible
-            if (isPasswordVisible){
-                passwordInput.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                passwordToggle.setImageResource(R.drawable.eye_open)
-            }
-            else{
-                passwordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                passwordToggle.setImageResource(R.drawable.eye_closed)
-            }
-            passwordInput.setSelection(passwordInput.text.length)
-        }
-
-        confirmPasswordToggle.setOnClickListener{
-            isConfirmPasswordVisible = !isConfirmPasswordVisible
-            if (isConfirmPasswordVisible){
-                confirmPasswordInput.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                confirmPasswordToggle.setImageResource(R.drawable.eye_open)
-            }
-            else{
-                confirmPasswordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                confirmPasswordToggle.setImageResource(R.drawable.eye_closed)
-            }
-            confirmPasswordInput.setSelection(confirmPasswordInput.text.length)
-        }
-
         // Take the user to the 'Login' page
         val loginButton = findViewById<TextView>(R.id.gotoLogin)
         loginButton.setOnClickListener {
