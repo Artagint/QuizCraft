@@ -41,5 +41,14 @@
         <activity
             android:name=".MakeClassActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".GoToClassesActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ClassDetailActivity"
+            android:exported="true" />
+
     </application>
 </manifest>
