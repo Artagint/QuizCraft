@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#151515">
 
-    <!-- Title -->
+    <!-- Make it scrollable here if the user adds many classes that are too many to fit on the screen all at once-->
     <TextView
         android:id="@+id/gtc_title"
         android:layout_width="wrap_content"
@@ -25,7 +25,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/classes_scroll"/>
 
-    <!-- Scrollable list container -->
     <ScrollView
         android:id="@+id/classes_scroll"
         android:layout_width="0dp"

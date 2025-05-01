@@ -10,16 +10,14 @@ class ClassDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_class_detail)
 
-        // Grab the class name passed in and show it
         val className = intent.getStringExtra("CLASS_NAME") ?: return finish()
         findViewById<TextView>(R.id.detailTitle).text = className
 
-        // Two stub buttons—no functionality yet
         findViewById<Button>(R.id.uploadFilesButton).setOnClickListener {
-            // TODO: wire up upload-files flow
+            // TODO: Now I also have to make file upload here
         }
         findViewById<Button>(R.id.takeQuizButton).setOnClickListener {
-            // TODO: wire up take-quiz flow
+            // TODO: Take the user to the quiz page
         }
     }
 }
