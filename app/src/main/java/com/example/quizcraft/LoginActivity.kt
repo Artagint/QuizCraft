@@ -14,14 +14,12 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // grab text fields
+        // grab all the text filez
         val emailInput     = findViewById<EditText>(R.id.emailInput)
         val passwordInput  = findViewById<EditText>(R.id.passwordInput)
         val gotoQuizButton = findViewById<Button>(R.id.gotoQuizButton)
         val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         val signUpButton   = findViewById<TextView>(R.id.signOut)
-
-        // getInstance
         val auth = FirebaseAuth.getInstance()
 
         // SIGN UP
@@ -29,12 +27,11 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-        // login
         gotoQuizButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
             val pass  = passwordInput.text.toString()
 
-            // basic field checks
+            // Just check all the fields
             var ok = true
             if (email.isEmpty()) {
                 emailInput.error = "Email required"
@@ -46,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
             }
             if (!ok) return@setOnClickListener
 
-            // Firebase sign in
+            // this is where I call firebase
             auth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {

@@ -32,9 +32,9 @@ class MakeClassActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_class)
 
-        classNameInput    = findViewById(R.id.classNameInput)
+        classNameInput = findViewById(R.id.classNameInput)
         uploadFileButton  = findViewById(R.id.uploadFileButton)
-        doneButton        = findViewById(R.id.doneButton)
+        doneButton  = findViewById(R.id.doneButton)
 
         /*
          * Here we just have the user pick a file, then when "Done" button is clicked, upload it to the DB.
@@ -59,36 +59,25 @@ class MakeClassActivity : AppCompatActivity(){
                  * upload under a different class name, if it doesn't then make the new class and upload
                  * the file for it
                  */
-                val firestore    = FirebaseFirestore.getInstance()
-                val classDocRef  = firestore.collection("classes").document(className)
+                val firestore = FirebaseFirestore.getInstance()
+                val classDocRef = firestore.collection("classes").document(className)
 
                 classDocRef.get()
-                    .addOnSuccessListener { snapshot ->
+                    .addOnSuccessListener {snapshot->
                         if (snapshot.exists()){
-                            Toast.makeText(
-                                this,
-                                "“$className” already exists, please choose another name.",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            Toast.makeText(this, "“$className” already exists, please choose another name.", Toast.LENGTH_LONG).show()
                         }
                         else {
-                            // create the class document, then upload the file
+                            // create the class document, then upload the file to it
                             classDocRef.set(mapOf(
                                 "createdAt" to FieldValue.serverTimestamp()
                             ))
-                                .addOnSuccessListener {
-                                    uploadToFirebase(className, fileUri)
-                                }
-                                .addOnFailureListener{ e ->
-                                    Toast.makeText(
-                                        this,
-                                        "Couldn’t create class: ${e.message}",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                .addOnSuccessListener{uploadToFirebase(className, fileUri)}
+                                .addOnFailureListener{e-> Toast.makeText(this, "Couldn’t create class: ${e.message}", Toast.LENGTH_LONG).show()
                                 }
                         }
                     }
-                    .addOnFailureListener{ e ->
+                    .addOnFailureListener{e->
                         Toast.makeText(
                             this,
                             "Error checking class: ${e.message}",
@@ -109,8 +98,8 @@ class MakeClassActivity : AppCompatActivity(){
             taskSnapshot.storage.downloadUrl.addOnSuccessListener{downloadUrl->
                 FirebaseFirestore.getInstance().collection("classes").document(className)
                     .collection("files").add(mapOf(
-                        "name"       to filename,
-                        "url"        to downloadUrl.toString(),
+                        "name" to filename,
+                        "url" to downloadUrl.toString(),
                         "uploadedAt" to FieldValue.serverTimestamp()
                     ))
                     .addOnSuccessListener{

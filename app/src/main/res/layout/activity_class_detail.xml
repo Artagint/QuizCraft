@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#151515">
 
-    <!-- Class Name -->
     <TextView
         android:id="@+id/detailTitle"
         android:layout_width="wrap_content"
@@ -24,8 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/detailCard"/>
-
-    <!-- Card containing two stub buttons -->
+    <!-- The buttons to upload file(s) and also take the quiz for the class -->
     <LinearLayout
         android:id="@+id/detailCard"
         android:layout_width="0dp"
@@ -38,18 +36,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Upload Files (stub) -->
         <Button
             android:id="@+id/uploadFilesButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Upload Files"
+            android:text="Upload File(s)"
             android:backgroundTint="#FFFFFF"
             android:textColor="#A60F2D"
             android:textStyle="bold"/>
 
-        <!-- Take Quiz (stub) -->
         <Button
             android:id="@+id/takeQuizButton"
             android:layout_width="match_parent"
